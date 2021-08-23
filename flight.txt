@@ -1,0 +1,47 @@
+/*Ejer1*/
+SELECT count(*) FROM flights;
+
+/*Ejer2*/
+SELECT Origin, avg(DepTime) as DepartureTime, avg(ArrTime) as ArrivalTime
+FROM Flights
+GROUP BY Origin;
+
+/*Ejer3*/
+SELECT Origin, colYear, colMonth, avg(ArrDelay) AS prom_arribades 
+FROM `Flights` 
+GROUP BY Origin, colYear, colMonth
+ORDER BY Origin, colYear, colMonth;
+
+/*Ejer4*/
+SELECT city, colYear, colMonth, avg(ArrDelay) AS prom_arribades 
+FROM `USAirports`, `Flights` 
+WHERE Origin = IATA
+GROUP BY city, colYear, colMonth
+ORDER BY city, colYear, colMonth;
+
+/*Ejer5*/
+SELECT UniqueCarrier, colYear, colMonth, count(*) AS total_cancelled
+ FROM `Flights`
+ WHERE Cancelled = 1
+ GROUP BY UniqueCarrier,colYear, colMonth
+ ORDER BY total_cancelled DESC, colYear DESC, colMonth DESC;
+
+/*Ejer6*/
+SELECT TailNum, sum(Distance) AS totalDistance
+ FROM `Flights`
+ WHERE TailNum is not null
+ GROUP BY TailNum
+ ORDER BY totalDistance DESC
+ LIMIT 10;
+
+/*Ejer7*/
+SELECT UniqueCarrier, avg(ArrDelay) AS avgDelay
+ FROM `Flights`
+ GROUP BY UniqueCarrier
+ HAVING avg(ArrDelay) > 10
+ ORDER BY avgDelay DESC;
+
+
+
+
+
